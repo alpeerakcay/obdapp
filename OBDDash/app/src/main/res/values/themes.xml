@@ -1,6 +1,0 @@
-<resources>
-    <style name="Theme.OBDDash" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:statusBarColor">#0B0D0F</item>
-        <item name="android:windowBackground">#0B0D0F</item>
-    </style>
-</resources>
