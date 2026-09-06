@@ -22,10 +22,9 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Gerekli SDK paketlerini indir
-        run: |
-          sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
+        run: sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
 
-            - name: Gradle wrapper oluştur
+      - name: Gradle wrapper oluştur
         run: |
           mkdir -p /tmp/wrapper-gen
           cd /tmp/wrapper-gen
@@ -42,4 +41,3 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: obd-panel-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
