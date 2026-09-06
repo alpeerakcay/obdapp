@@ -24,20 +24,16 @@ jobs:
       - name: Gerekli SDK paketlerini indir
         run: sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Gradle wrapper oluştur
-        run: |
-          mkdir -p /tmp/wrapper-gen
-          cd /tmp/wrapper-gen
-          gradle wrapper --gradle-version 8.4
-          cp -r gradlew gradlew.bat gradle "$GITHUB_WORKSPACE"/
-
-      - name: Çalıştırma izni ver
-        run: chmod +x ./gradlew
+      - name: Gradle kur
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.4
 
       - name: Debug APK derle
-        run: ./gradlew assembleDebug --stacktrace
+        run: gradle assembleDebug --stacktrace
 
       - name: APK'yı yükle (indirilebilir hale getir)
         uses: actions/upload-artifact@v4
         with:
           name: obd-panel-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
