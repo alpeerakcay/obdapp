@@ -25,8 +25,12 @@ jobs:
         run: |
           sdkmanager --install "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Gradle wrapper oluştur
-        run: gradle wrapper --gradle-version 8.4
+            - name: Gradle wrapper oluştur
+        run: |
+          mkdir -p /tmp/wrapper-gen
+          cd /tmp/wrapper-gen
+          gradle wrapper --gradle-version 8.4
+          cp -r gradlew gradlew.bat gradle "$GITHUB_WORKSPACE"/
 
       - name: Çalıştırma izni ver
         run: chmod +x ./gradlew
